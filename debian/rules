@@ -1,0 +1,25 @@
+#!/usr/bin/make -f
+
+override_dh_auto_install:
+	dh_auto_install
+
+	mkdir -p $(CURDIR)/debian/homegear-knx-baos/etc/homegear/families
+	cp -R $(CURDIR)/misc/Config\ Directory/* $(CURDIR)/debian/homegear-knx-baos/etc/homegear/families
+	chmod 755 $(CURDIR)/debian/homegear-knx-baos/etc/homegear/families
+	chmod 644 $(CURDIR)/debian/homegear-knx-baos/etc/homegear/families/*
+
+	mkdir -p $(CURDIR)/debian/homegear-knx-baos/etc/homegear/devices/67
+	cp -R $(CURDIR)/misc/Device\ Description\ Files/* $(CURDIR)/debian/homegear-knx-baos/etc/homegear/devices/67
+	chmod 755 $(CURDIR)/debian/homegear-knx-baos/etc/homegear/devices/67
+	chmod 644 $(CURDIR)/debian/homegear-knx-baos/etc/homegear/devices/67/*
+
+	mkdir -p $(CURDIR)/debian/homegear-knx-baos/var/lib/homegear/admin-ui/translations/modules/knx-baos
+	cp -R $(CURDIR)/misc/UI\ Translations/* $(CURDIR)/debian/homegear-knx-baos/var/lib/homegear/admin-ui/translations/modules/knx-baos
+	chown -R root:root $(CURDIR)/debian/homegear-knx-baos/var/lib/homegear/admin-ui/translations/modules/knx-baos
+	chmod -R 555 $(CURDIR)/debian/homegear-knx-baos/var/lib/homegear/admin-ui/translations/modules/knx-baos
+
+override_dh_strip:
+	dh_strip --dbg-package=homegear-knx-baos
+
+%:
+	dh $@ --parallel
