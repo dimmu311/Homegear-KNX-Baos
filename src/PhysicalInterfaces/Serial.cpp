@@ -133,7 +133,7 @@ kdrive::baos::BaosDatapointDescriptions::Descriptions Serial::searchPeers() {
   baosDatapointDescriptions.readFromDevice();
 
   const kdrive::baos::BaosDatapointDescriptions::Descriptions descriptions = baosDatapointDescriptions.getDescriptions();
-  /*
+  
   const uint32_t count = descriptions.size();
   _out.printInfo(std::to_string(count) + " items found.");
 
@@ -156,7 +156,7 @@ kdrive::baos::BaosDatapointDescriptions::Descriptions Serial::searchPeers() {
       _out.printEx(__FILE__, __LINE__, __PRETTY_FUNCTION__, ex.what());
     }   
   }
-  */
+  
   return descriptions;
 }
 
